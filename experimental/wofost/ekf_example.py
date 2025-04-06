@@ -83,7 +83,6 @@ def state_estimation_func(
         for o in outputs:
             y = ensemble[simulation_id]["result"][o][-1]
             model.set_variable(o, y)
-            del ensemble[simulation_id]["result"][o][-1]
 
     model.run(1)
     output_values = model.get_output()[-1]
@@ -107,7 +106,7 @@ specification = StateEstimationMethodModel(
     n_iterations=n_iterations,
     output_labels=["LAI"],
     stds = dict(LAI=0.1),
-    replace_state_variables=False,
+    replace_state_variables=True,
     verbose=True,
     batched=False,
     calibration_func_kwargs=dict(t=observed_df.index),
