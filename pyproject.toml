@@ -11,10 +11,13 @@ authors = [
 license = "Apache-2.0"
 readme = "README.md"
 repository = "https://github.com/Plant-Food-Research-Open/calisim"
+package-mode = false 
 
 [tool.poetry.dependencies]
 python = ">=3.10,<3.13"
-calisim = {extras = ["hydra", "torch", "torchx"], version = "^0.4.0"}
+calisim = {extras = ["hydra", "torch", "torchx"], version = "^0.6.0"}
+tegenomesimulator = {git = "https://git@github.com/Plant-Food-Research-Open/TEgenomeSimulator.git", rev = "v1.0.0"}
+mesa = {version = "<3.1.1", extras = ["rec", "network", "viz"]}
 
 [tool.poetry.group.docs.dependencies]
 sphinx-rtd-theme = "^3.0.1"
