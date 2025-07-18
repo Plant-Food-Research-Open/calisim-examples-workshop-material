@@ -1,2 +1,5 @@
 TEgenomeSimulator_*
 **.gff
+*.png
+*.csv
+!random_genome_chr_index.csv
