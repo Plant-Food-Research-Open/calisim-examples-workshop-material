@@ -18,6 +18,7 @@ python = ">=3.10,<3.13"
 calisim = {extras = ["hydra", "torch", "torchx"], version = "^0.6.0"}
 tegenomesimulator = {git = "https://git@github.com/Plant-Food-Research-Open/TEgenomeSimulator.git", rev = "v1.0.0"}
 mesa = {version = "<3.1.1", extras = ["rec", "network", "viz"]}
+mmh3 = "^5.1.0"
 
 [tool.poetry.group.docs.dependencies]
 sphinx-rtd-theme = "^3.0.1"
@@ -79,3 +80,9 @@ extend-ignore = [
     "E101",
     "RUF012"
 ]
+
+[tool.codespell]
+skip = 'poetry.lock,./third_party'
+count = true
+quiet-level = 3
+ignore-words-list = 'ot,sies,SIES'
