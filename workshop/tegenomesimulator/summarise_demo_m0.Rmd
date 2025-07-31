@@ -1,0 +1,197 @@
+---
+title: "TEgenomeSimulator report: A summary of the TE landscape of the simulated genome"
+date: "`r format(Sys.time(), '%d %B, %Y')`"
+params:
+  genome_fasta: "default_genome.fasta"
+  repeat_fasta: "default_repeat.fasta"
+  repeat_gff: "default_repeat.gff"
+  project_prefix: "test"
+  out_dir: "./report"
+  script_dir: "./"
+output:
+  html_document:
+    toc: true
+    toc_depth: '2'
+    df_print: paged
+  pdf_document:
+    toc: true
+    toc_depth: 2
+    number_sections: true
+    highlight: tango
+---
+
+```{r setup, include=FALSE}
+OUT <- out_dir
+#dir.create(file.path(OUT), recursive = TRUE, showWarnings = FALSE)
+#knitr::opts_knit$set(root.dir=OUT)
+```
+
+```{r samtools_index, include=FALSE}
+# Input file paths from parameters
+genome_fasta <- params$genome_fasta
+repeat_fasta <- params$repeat_fasta
+
+system2("samtools", c("faidx", genome_fasta), stdout = TRUE, stderr = TRUE)
+system2("samtools", c("faidx", repeat_fasta), stdout = TRUE, stderr = TRUE)
+```
+
+```{r, load_TEsnoopeR, include=FALSE}
+library(ggplot2)
+library(dplyr)
+library(tidyr)
+library(knitr)
+source(file.path(params$script_dir, "tegs_report_function.R"))
+```
+
+Tables and images saved in\
+`r OUT`
+
+```{r load_files, echo=FALSE}
+gfai <- paste0(genome_fasta, '.fai')
+tfai <- paste0(repeat_fasta, '.fai')
+gff <- repeat_gff
+genomefai <- read.table(gfai, header = F, sep = '\t')
+tefai <- read.table(tfai, header = F, sep = '\t', comment.char = "")
+tegff <- read.table(gff, header = F, sep = '\t', comment.char = "")
+```
+
+```{r fix_te_type, echo=FALSE}
+# Fix special TE type labels
+tegff <- tegff %>%
+  mutate(V3 = gsub("DNAauto", "DNA", V3)) %>%
+  mutate(V3 = gsub("DNAnona", "DNA", V3)) %>%
+  mutate(V9 = gsub("DNAauto", "DNA", V9)) %>%
+  mutate(V9 = gsub("DNAnona", "DNA", V9))
+```
+
+```{r data_sum, include=FALSE}
+breakdown <- te_breakdown_sim_genome(tegff)
+data.sum <- te_by_superfamily_sim_genome(tegff)
+```
+
+## The proportion of the TE/nonTE sequence
+
+```{r, get_stat, echo=FALSE}
+genomesize <- sum(genomefai$V2)
+tesize <- sum(tefai$V2)
+te_perc <- tesize * 100 / (genomesize)
+
+# Print extracted values
+cat("Total genome size:", genomesize, "bp\n")
+cat("Repeat-occupied:", tesize, "bp\n")
+cat("Percentage repeat:", te_perc, "%\n")
+```
+
+```{r, fig1, echo=FALSE, out.width="50%"}
+plotwidth <- 8
+plotheight <- 8
+plot <- plot_sim_genome_bp_piechart(genomesize, tesize, project_prefix)
+options(repr.plot.width=plotwidth, repr.plot.height=plotheight)
+plot
+```
+
+```{r, save_fig1, echo=FALSE}
+png(filename = file.path(OUT, paste0("genome_size_piegraph_", project_prefix, ".png")), width = plotwidth, height = plotheight, units = "in", res = 1200)
+print(plot)
+while (!is.null(dev.list()))  dev.off()
+```
+
+Saved file name: genome_size_piegraph_`r project_prefix`.png 
+
+## Breaking down the simulated TEs by superfamily
+
+```{r, table1, echo=FALSE}
+total_loci <- sum(data.sum$count)
+total_bp <- sum(data.sum$bp)
+total_fam <- sum(data.sum$family_count)
+data_sum <- data.sum
+data_sum$total_loci <- rep(total_loci, nrow(data_sum))
+data_sum$total_bp <- rep(total_bp, nrow(data_sum))
+data_sum <- data_sum %>% 
+  mutate(loci_percentage = round(100*(count/total_loci), 2), bp_percentage = round(100*(bp/total_bp), 2), family_percentage = round(100*(family_count/total_fam), 2)) %>%
+  rename(TE_superfamily = TE, loci = count) %>%
+  select(-total_loci, -total_bp)
+total_row <- data.frame(TE_superfamily = "Total", loci = total_loci, bp = total_bp, family_count = total_fam, loci_percentage = 100, bp_percentage = 100, family_percentage = 100)
+data_sum <- rbind(data_sum, total_row)
+
+write.table(data_sum, file.path(OUT, paste0("genome_summary_TEsuperfamily_", project_prefix, ".csv")), col.names = T, row.names = F, sep = ",")
+kable(data_sum, format="markdown")
+```
+
+
+Saved file name: genome_summary_TEsuperfamily_`r project_prefix`.csv 
+
+## Total simulated TE loci categorised by TE superfamily
+
+```{r, fig2, echo=FALSE, out.width="60%"}
+plotwidth <- 8
+plotheight <- 8
+options(repr.plot.width=plotwidth, repr.plot.height=plotheight)
+plot <- plot_te_loci_piechart(data.sum, project_prefix)
+plot
+```
+
+```{r, save_fig2, echo=FALSE}
+png(filename = file.path(OUT, paste0("te_loci_piegraph_", project_prefix, ".png")), width = plotwidth, height = plotheight, units = "in", res = 1200)
+print(plot)
+while (!is.null(dev.list()))  dev.off()
+```
+
+Saved file name: sim_te_loci_piegraph_`r project_prefix`.png 
+
+## Total simulated TE bases categorised by TE superfamily
+
+```{r, fig3, echo=FALSE, out.width="60%"}
+plotwidth <- 8
+plotheight <- 8
+options(repr.plot.width=plotwidth, repr.plot.height=plotheight)
+plot <- plot_te_bp_piechart(data.sum, project_prefix)
+plot
+```
+
+```{r, save_fig3, echo=FALSE}
+png(filename = file.path(OUT, paste0("te_bp_piegraph_", project_prefix, ".png")), width = plotwidth, height = plotheight, units = "in", res = 1200)
+print(plot)
+while (!is.null(dev.list()))  dev.off()
+```
+
+Saved file name: te_bp_piegraph_`r project_prefix`.png 
+
+## The distribution of TE loci divergnce 
+
+
+```{r, fig9, echo=FALSE, fig.width = 12, fig.asp = .67}
+plotwidth <- 12
+plotheight <- 8
+options(repr.plot.width=plotwidth, repr.plot.height=plotheight)
+plot <- plot_sim_divergence_by_loci(project_prefix, breakdown)
+plot
+```
+
+```{r, save_fig9, echo=FALSE}
+png(filename = file.path(OUT, paste0("te_loci_divergence_", project_prefix, ".png")), width = plotwidth, height = plotheight, units = "in", res = 1200)
+print(plot)
+while (!is.null(dev.list()))  dev.off()
+```
+
+Saved file name: te_loci_divergence_`r project_prefix`.png 
+
+
+# The distribution of TE loci integrity
+
+```{r, fig10, echo=FALSE, fig.width = 12, fig.asp = .67}
+plotwidth <- 12
+plotheight <- 8
+options(repr.plot.width=plotwidth, repr.plot.height=plotheight)
+plot <- plot_sim_integrity_by_loci(project_prefix, breakdown |> filter(itg > -0.2))
+plot
+```
+
+```{r, save_fig10, echo=FALSE}
+png(filename = file.path(OUT, paste0("te_loci_integrity_", project_prefix, ".png")), width = plotwidth, height = plotheight, units = "in", res = 1200)
+print(plot)
+while (!is.null(dev.list()))  dev.off()
+```
+
+Saved file name: te_loci_integrity_`r project_prefix`.png 
+
