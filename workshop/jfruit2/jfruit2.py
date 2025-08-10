@@ -2,6 +2,7 @@ import pandas as pd
 from subprocess import Popen
 from pathlib import Path
 import uuid
+import os
 
 class JFruit2:
     observed = str(Path("data", "observation", "obs_apple_optim_GS.csv"))
@@ -61,3 +62,8 @@ class JFruit2:
         Popen(cmd, shell=True).wait()
 
         self.results = pd.read_csv(outpath, sep=";")
+        os.unlink(outpath)
+        
+        if properties.endswith(f"{self.sim_id}.properties"):
+            os.unlink(properties)
+        
