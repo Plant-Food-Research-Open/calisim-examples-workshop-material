@@ -25,6 +25,7 @@
 - [Introduction](#introduction)
 - [Workshop](#workshop)
   - [Setup](#setup)
+    - [Google Colab](#google-colab)
     - [Virtual environment](#virtual-environment)
     - [Docker](#docker)
 
@@ -54,6 +55,15 @@ git clone https://github.com/Plant-Food-Research-Open/calisim-examples-workshop-
 
 cd calisim-examples-workshop-material
 ```
+
+### Google Colab
+
+JFruit2 workshop content:
+
+- https://colab.research.google.com/github/Plant-Food-Research-Open/calisim-examples-workshop-material/blob/main/workshop/jfruit2/0_jfruit2_intro.ipynb
+- https://colab.research.google.com/github/Plant-Food-Research-Open/calisim-examples-workshop-material/blob/main/workshop/jfruit2/1_jfruit2_sensitivity_analysis.ipynb
+- https://colab.research.google.com/github/Plant-Food-Research-Open/calisim-examples-workshop-material/blob/main/workshop/jfruit2/2_jfruit2_optimisation.ipynb
+- https://colab.research.google.com/github/Plant-Food-Research-Open/calisim-examples-workshop-material/blob/main/workshop/jfruit2/3_jfruit2_advanced.ipynb
 
 ### Virtual environment
 
