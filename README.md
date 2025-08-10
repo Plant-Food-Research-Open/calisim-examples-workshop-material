@@ -89,4 +89,4 @@ docker compose up calisim
 # ctrl + C to exit
 ```
 
-This will launch Jupyter Lab within a container.
+This will launch JupyterLab within your browser.
