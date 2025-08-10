@@ -12,12 +12,15 @@ LABEL version=$CALISIM_VERSION
 
 WORKDIR /workspace
 
+ENV DEBIAN_FRONTEND=noninteractive \
+    JAVA_HOME=/usr/lib/jvm/java-17-openjdk-amd64/bin/java
+
 COPY README.md README.md
 
 COPY workshop workshop
 
 RUN apt-get update \
-    && apt-get install -y --no-install-recommends build-essential libpq-dev graphviz \
+    && apt-get install -y --no-install-recommends build-essential libpq-dev graphviz openjdk-17-jdk \
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/* \
     && rm -rf /tmp/downloaded_packages
