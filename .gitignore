@@ -168,6 +168,6 @@ slurm-*.out
 .python-version
 sbi-logs
 catboost_info
-
+jfruit2.log
 # TEgenomeSimulator output
 workshop/tegenomesimulator/demo_m0
