@@ -16,8 +16,8 @@ package-mode = false
 [tool.poetry.dependencies]
 python = ">=3.10,<3.13"
 calisim = {extras = ["hydra", "torchx"], version = "^0.6.1"}
-tegenomesimulator = {git = "https://git@github.com/Plant-Food-Research-Open/TEgenomeSimulator.git", rev = "290baade3d2a802949b36bffc756b6a1fef3955c"}
 mesa = {version = "<3.1.1", extras = ["rec", "network", "viz"]}
+tegenomesimulator = {git = "https://git@github.com/Plant-Food-Research-Open/TEgenomeSimulator.git", rev = "main"}
 
 
 [tool.poetry.group.docs.dependencies]
@@ -49,6 +49,8 @@ types-pyyaml = "^6.0.12.20240917"
 ruff = "^0.7.0"
 jupyterlab = "^4.3.1"
 pre-commit = "^4.2.0"
+notebook = "^7.4.7"
+jupyterhub = "^5.3.0"
 
 [build-system]
 requires = ["poetry-core"]
