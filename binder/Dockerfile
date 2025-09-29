@@ -17,7 +17,7 @@ RUN adduser --disabled-password \
     --gecos "Default user" \
     --uid ${NB_UID} \
     ${NB_USER} \
-    && mv /workspace/{*,.*} ${HOME} 2>/dev/null \
+    && mv /workspace/* ${HOME} \
     && chown -R ${NB_UID} ${HOME}
 
 USER ${NB_USER}
