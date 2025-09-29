@@ -4,6 +4,7 @@
 [![License](https://img.shields.io/badge/License-Apache_2.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
 [![Ruff](https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/astral-sh/ruff/main/assets/badge/v2.json)](https://github.com/astral-sh/ruff)
 [![pre-commit](https://img.shields.io/badge/pre--commit-enabled-brightgreen?logo=pre-commit)](https://github.com/pre-commit/pre-commit)
+[![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/Plant-Food-Research-Open/calisim-examples-workshop-material.git/HEAD)
 [![security: bandit](https://img.shields.io/badge/security-bandit-yellow.svg)](https://github.com/PyCQA/bandit)
 [![Build](https://github.com/Plant-Food-Research-Open/calisim-examples-workshop-material/actions/workflows/build.yaml/badge.svg?branch=main)](https://github.com/Plant-Food-Research-Open/calisim-examples-workshop-material/actions/workflows/build.yaml)
 [![CodeQL Advanced](https://github.com/Plant-Food-Research-Open/calisim-examples-workshop-material/actions/workflows/codeql.yaml/badge.svg?branch=main)](https://github.com/Plant-Food-Research-Open/calisim-examples-workshop-material/actions/workflows/codeql.yaml)
@@ -26,6 +27,7 @@
 - [Workshop](#workshop)
   - [Setup](#setup)
     - [Google Colab](#google-colab)
+    - [Binder](#binder)
     - [Virtual environment](#virtual-environment)
     - [Docker](#docker)
 
@@ -64,6 +66,12 @@ JFruit2 workshop content may be accessed via the following links:
 - [Sensitivity analysis](https://colab.research.google.com/github/Plant-Food-Research-Open/calisim-examples-workshop-material/blob/main/workshop/jfruit2/1_jfruit2_sensitivity_analysis.ipynb)
 - [Optimisation](https://colab.research.google.com/github/Plant-Food-Research-Open/calisim-examples-workshop-material/blob/main/workshop/jfruit2/2_jfruit2_optimisation.ipynb)
 - [Advanced](https://colab.research.google.com/github/Plant-Food-Research-Open/calisim-examples-workshop-material/blob/main/workshop/jfruit2/3_jfruit2_advanced.ipynb)
+
+### Binder 
+
+[Click this link to launch the workshop material within Binder.](https://mybinder.org/v2/gh/Plant-Food-Research-Open/calisim-examples-workshop-material.git/HEAD)
+
+Note that you may need to wait roughly 5 minutes for the workshop Docker image to be pulled when first using Binder.
 
 ### Virtual environment
 
