@@ -48,6 +48,8 @@ This workshop material covers the following example models:
 
 We will work though basic examples for optimisation and sensitivity analysis, alongside more complex Bayesian computational methods.
 
+[Click this link to launch the workshop material within Binder, which is recommended for users who do not wish to configure the workshop environment locally.](https://mybinder.org/v2/gh/Plant-Food-Research-Open/calisim-examples-workshop-material.git/HEAD)
+
 ## Setup
 
 To setup the workshop material, we will first need to clone the GitHub repo like so:
@@ -58,6 +60,12 @@ git clone https://github.com/Plant-Food-Research-Open/calisim-examples-workshop-
 cd calisim-examples-workshop-material
 ```
 
+### Binder 
+
+[Click this link to launch the workshop material within Binder.](https://mybinder.org/v2/gh/Plant-Food-Research-Open/calisim-examples-workshop-material.git/HEAD)
+
+Note that you may need to wait roughly 5 minutes for the workshop Docker image to be pulled when first using Binder.
+
 ### Google Colab
 
 JFruit2 workshop content may be accessed via the following links:
@@ -66,12 +74,6 @@ JFruit2 workshop content may be accessed via the following links:
 - [Sensitivity analysis](https://colab.research.google.com/github/Plant-Food-Research-Open/calisim-examples-workshop-material/blob/main/workshop/jfruit2/1_jfruit2_sensitivity_analysis.ipynb)
 - [Optimisation](https://colab.research.google.com/github/Plant-Food-Research-Open/calisim-examples-workshop-material/blob/main/workshop/jfruit2/2_jfruit2_optimisation.ipynb)
 - [Advanced](https://colab.research.google.com/github/Plant-Food-Research-Open/calisim-examples-workshop-material/blob/main/workshop/jfruit2/3_jfruit2_advanced.ipynb)
-
-### Binder 
-
-[Click this link to launch the workshop material within Binder.](https://mybinder.org/v2/gh/Plant-Food-Research-Open/calisim-examples-workshop-material.git/HEAD)
-
-Note that you may need to wait roughly 5 minutes for the workshop Docker image to be pulled when first using Binder.
 
 ### Virtual environment
 
