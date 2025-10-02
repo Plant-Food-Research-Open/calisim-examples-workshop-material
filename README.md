@@ -26,8 +26,8 @@
 - [Introduction](#introduction)
 - [Workshop](#workshop)
   - [Setup](#setup)
-    - [Google Colab](#google-colab)
     - [Binder](#binder)
+    - [Google Colab](#google-colab)
     - [Virtual environment](#virtual-environment)
     - [Docker](#docker)
 
