@@ -27,7 +27,6 @@
 - [Workshop](#workshop)
   - [Setup](#setup)
     - [Binder](#binder)
-    - [Google Colab](#google-colab)
     - [Virtual environment](#virtual-environment)
     - [Docker](#docker)
 
@@ -65,15 +64,6 @@ cd calisim-examples-workshop-material
 [Click this link to launch the workshop material within Binder.](https://mybinder.org/v2/gh/Plant-Food-Research-Open/calisim-examples-workshop-material.git/HEAD)
 
 Note that you may need to wait roughly 5 minutes for the workshop Docker image to be pulled when first using Binder.
-
-### Google Colab
-
-JFruit2 workshop content may be accessed via the following links:
-
-- [Introduction](https://colab.research.google.com/github/Plant-Food-Research-Open/calisim-examples-workshop-material/blob/main/workshop/jfruit2/0_jfruit2_intro.ipynb)
-- [Sensitivity analysis](https://colab.research.google.com/github/Plant-Food-Research-Open/calisim-examples-workshop-material/blob/main/workshop/jfruit2/1_jfruit2_sensitivity_analysis.ipynb)
-- [Optimisation](https://colab.research.google.com/github/Plant-Food-Research-Open/calisim-examples-workshop-material/blob/main/workshop/jfruit2/2_jfruit2_optimisation.ipynb)
-- [Advanced](https://colab.research.google.com/github/Plant-Food-Research-Open/calisim-examples-workshop-material/blob/main/workshop/jfruit2/3_jfruit2_advanced.ipynb)
 
 ### Virtual environment
 
