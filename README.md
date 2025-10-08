@@ -122,4 +122,4 @@ Contributions are more than welcome. For general guidelines on how to contribute
 
 calisim is published under the Apache License (see [LICENSE](https://github.com/Plant-Food-Research-Open/calisim-examples-workshop-material/tree/main/LICENSE)).
 
-View all third party licenses (see [third_party](https://github.com/Plant-Food-Research-Open/calisim-examples-workshop-material/tree/main/third_party))
+View all third party licenses (see [third_party](https://github.com/Plant-Food-Research-Open/calisim/tree/main/third_party))

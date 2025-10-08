@@ -1,0 +1,32 @@
+{
+    "editor.formatOnSave": false,
+    "[yaml]": {
+        "editor.autoIndent": "keep",
+        "editor.formatOnSave": true,
+        "editor.tabSize": 2,
+        "prettier.tabWidth": 2,
+        "editor.defaultFormatter": "redhat.vscode-yaml"
+    },
+    "[python]": {
+        "editor.defaultFormatter": "ms-python.black-formatter",
+        "python.linting.lintOnSave": true,
+        "editor.insertSpaces": true,
+        "editor.formatOnSave": true,
+        "editor.tabSize": 4
+    },
+    "files.associations": {
+        "*.py.in": "python",
+        "*.pyi.in": "python"
+    },
+    "search.exclude": {
+        "**/.git": true,
+        "**/poetry.lock": true,
+        "**/tmp": true
+    },
+    "files.eol": "\n",
+    "files.insertFinalNewline": true,
+    "files.trimFinalNewlines": true,
+    "files.trimTrailingWhitespace": true,
+    "python.linting.enabled": true,
+    "python.linting.flake8Enabled": true
+}
