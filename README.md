@@ -16,6 +16,7 @@
 | [**Examples**](https://github.com/Plant-Food-Research-Open/calisim/tree/main/examples)
 | [**Releases**](https://github.com/Plant-Food-Research-Open/calisim/releases)
 | [**Docker**](https://github.com/Plant-Food-Research-Open/calisim/pkgs/container/calisim)
+| [**Binder**](https://mybinder.org/v2/gh/Plant-Food-Research-Open/calisim-examples-workshop-material.git/HEAD)
 
 *A toolbox for the calibration and evaluation of simulation models.*
 
@@ -24,11 +25,13 @@
 - [calisim: Examples and Workshop Material](#calisim-examples-and-workshop-material)
 - [Table of contents](#table-of-contents)
 - [Introduction](#introduction)
+- [Installation](#installation)
+- [Usage with Docker](#usage-with-docker)
+- [Usage with Binder](#usage-with-binder)
 - [Workshop](#workshop)
-  - [Setup](#setup)
-    - [Binder](#binder)
-    - [Virtual environment](#virtual-environment)
-    - [Docker](#docker)
+- [Communication](#communication)
+- [Contributions and Support](#contributions-and-support)
+- [License](#license)
 
 # Introduction
 
@@ -36,30 +39,9 @@ calisim is an open-source, low-code model calibration library that streamlines a
 
 calisim is primarily a wrapper around popular libraries and frameworks including Optuna, PyMC, scikit-learn, and emcee among many others. The design and simplicity of calisim was inspired by the scikit-learn and PyCaret libraries.
 
-# Workshop
+# Installation 
 
-Workshop material for calisim may be found in the [workshop directory.](workshop)
-
-This workshop material covers the following example models:
-
-1. JFruit2
-2. TEgenomeSimulator
-
-We will work though basic examples for optimisation and sensitivity analysis, alongside more complex calibration methods.
-
-[Click this link to launch the workshop material within Binder, which is recommended for users who do not wish to configure the workshop environment locally.](https://mybinder.org/v2/gh/Plant-Food-Research-Open/calisim-examples-workshop-material.git/HEAD)
-
-## Setup
-
-### Binder 
-
-[Click this link to launch the workshop material within Binder.](https://mybinder.org/v2/gh/Plant-Food-Research-Open/calisim-examples-workshop-material.git/HEAD)
-
-Note that you may need to wait roughly 2 or more minutes for the workshop Docker image to be pulled when first using Binder.
-
-### Virtual environment
-
-To setup the workshop material, we will first need to clone the GitHub repo like so:
+To setup the examples and workshop material, we will first need to clone the GitHub repo like so:
 
 ```
 git clone https://github.com/Plant-Food-Research-Open/calisim-examples-workshop-material.git
@@ -89,9 +71,9 @@ Finally, launch JupyterLab in your web browser:
 jupyter lab
 ```
 
-### Docker
+# Usage with Docker
 
-To run the workshop material within a Docker container, execute the following:
+To run the examples and workshop material within a Docker container, execute the following:
 
 ```
 wget https://raw.githubusercontent.com/Plant-Food-Research-Open/calisim-examples-workshop-material/refs/heads/main/docker-compose.yaml
@@ -101,3 +83,42 @@ docker compose up calisim
 ```
 
 This will launch JupyterLab within your browser.
+
+# Usage with Binder 
+
+[Click this link to launch the examples and workshop material within Binder.](https://mybinder.org/v2/gh/Plant-Food-Research-Open/calisim-examples-workshop-material.git/HEAD)
+
+Note that you may need to wait roughly 2 or more minutes for the workshop Docker image to be pulled when first using Binder.
+
+# Workshop
+
+Workshop material for calisim may be found in the [workshop directory.](workshop)
+
+This workshop material covers the following example models:
+
+1. JFruit2
+2. TEgenomeSimulator
+
+We will work though basic examples for optimisation and sensitivity analysis, alongside more complex calibration methods.
+
+[Click this link to launch the workshop material within Binder, which is recommended for users who do not wish to configure the workshop environment locally.](https://mybinder.org/v2/gh/Plant-Food-Research-Open/calisim-examples-workshop-material.git/HEAD)
+
+# Communication
+
+Please refer to the following links:
+
+- [GitHub Discussions] for questions.
+- [GitHub Issues] for bug reports and feature requests.
+
+[GitHub Discussions]: https://github.com/Plant-Food-Research-Open/calisim-examples-workshop-material/discussions
+[GitHub issues]: https://github.com/Plant-Food-Research-Open/calisim-examples-workshop-material/issues
+
+# Contributions and Support
+
+Contributions are more than welcome. For general guidelines on how to contribute to this project, take a look at [CONTRIBUTING.md](https://github.com/Plant-Food-Research-Open/calisim-examples-workshop-material/tree/main/CONTRIBUTING.md).
+
+# License
+
+calisim is published under the Apache License (see [LICENSE](https://github.com/Plant-Food-Research-Open/calisim-examples-workshop-material/tree/main/LICENSE)).
+
+View all third party licenses (see [third_party](https://github.com/Plant-Food-Research-Open/calisim-examples-workshop-material/tree/main/third_party))
