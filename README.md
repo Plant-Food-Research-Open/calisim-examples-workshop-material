@@ -1,3 +1,5 @@
+<div align="left"><img src="https://raw.githubusercontent.com/Plant-Food-Research-Open/calisim/main/docs/assets/calisim_logo.png" width="400" height="130"/></div>
+
 # calisim: Examples and Workshop Material
 
 [![Python](https://img.shields.io/badge/python-3.10%20%7C%203.11%20%7C%203.12-blue)](https://www.python.org)
@@ -11,7 +13,7 @@
 [![CodeQL Advanced](https://github.com/Plant-Food-Research-Open/calisim-examples-workshop-material/actions/workflows/codeql.yaml/badge.svg?branch=main)](https://github.com/Plant-Food-Research-Open/calisim-examples-workshop-material/actions/workflows/codeql.yaml)
 
 [**PyPI**](https://pypi.python.org/pypi/calisim)
-| [**Documentation**](https://calisim.readthedocs.io)
+| [**Documentation**](https://calisim-examples-workshop-material.readthedocs.io)
 | [**API**](https://calisim.readthedocs.io/en/latest/api_reference/index.html)
 | [**Changelog**](https://calisim.readthedocs.io/en/latest/changelogs/changelog.html)
 | [**Examples**](https://github.com/Plant-Food-Research-Open/calisim/tree/main/examples)
@@ -30,6 +32,9 @@
 - [Usage with Docker](#usage-with-docker)
 - [Usage with Binder](#usage-with-binder)
 - [Workshop](#workshop)
+  - [Helpful background knowledge](#helpful-background-knowledge)
+  - [Coordinators](#coordinators)
+  - [Announcements](#announcements)
 - [Communication](#communication)
 - [Contributions and Support](#contributions-and-support)
 - [License](#license)
@@ -40,7 +45,7 @@ calisim is an open-source, low-code model calibration library that streamlines a
 
 calisim is primarily a wrapper around popular libraries and frameworks including Optuna, PyMC, scikit-learn, and emcee among many others. The design and simplicity of calisim was inspired by the scikit-learn and PyCaret libraries.
 
-# Installation 
+# Installation
 
 To setup the examples and workshop material, we will first need to clone the GitHub repo like so:
 
@@ -85,7 +90,7 @@ docker compose up calisim
 
 This will launch JupyterLab within your browser.
 
-# Usage with Binder 
+# Usage with Binder
 
 [Click this link to launch the examples and workshop material within Binder.](https://mybinder.org/v2/gh/Plant-Food-Research-Open/calisim-examples-workshop-material.git/HEAD)
 
@@ -95,7 +100,7 @@ Note that you may need to wait roughly 2 or more minutes for the workshop Docker
 
 Workshop material for calisim may be found in the [workshop directory.](workshop)
 
-This workshop material covers the following example models:
+This workshop material includes the following example models:
 
 1. JFruit2
 2. TEgenomeSimulator
@@ -103,6 +108,22 @@ This workshop material covers the following example models:
 We will work though basic examples for optimisation and sensitivity analysis, alongside more complex calibration methods.
 
 [Click this link to launch the workshop material within Binder, which is recommended for users who do not wish to configure the workshop environment locally.](https://mybinder.org/v2/gh/Plant-Food-Research-Open/calisim-examples-workshop-material.git/HEAD)
+
+## Helpful background knowledge
+
+Familiarity with Python and computer simulation modelling. Some introductory-level understanding of black-box optimisation, sensitivity analysis, and Bayesian calibration.
+
+## Coordinators
+
+- Hana Liang (Yongqi.Liang@plantandfood.co.nz)
+- Ting-Hsuan Chen (Ting-Hsuan.Chen@plantandfood.co.nz)
+- Jingjing Zhang (Jingjing.Zhang@plantandfood.co.nz)
+- Chris Van Houtte (Chris.Vanhoutte@plantandfood.co.nz)
+- James Bristow (James.Bristow@plantandfood.co.nz)
+
+## Announcements
+
+To view workshop announcements, [please select this link](https://github.com/Plant-Food-Research-Open/calisim-examples-workshop-material/tree/main/docs/source/communications_community/announcements.md).
 
 # Communication
 
@@ -117,6 +138,8 @@ Please refer to the following links:
 # Contributions and Support
 
 Contributions are more than welcome. For general guidelines on how to contribute to this project, take a look at [CONTRIBUTING.md](https://github.com/Plant-Food-Research-Open/calisim-examples-workshop-material/tree/main/CONTRIBUTING.md).
+
+For our community code of conduct, please also view [CODE_OF_CONDUCT.md](https://github.com/Plant-Food-Research-Open/calisim-examples-workshop-material/tree/main/CODE_OF_CONDUCT.md).
 
 # License
 
