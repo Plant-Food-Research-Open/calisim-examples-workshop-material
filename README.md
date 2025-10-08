@@ -45,11 +45,19 @@ This workshop material covers the following example models:
 1. JFruit2
 2. TEgenomeSimulator
 
-We will work though basic examples for optimisation and sensitivity analysis, alongside more complex Bayesian computational methods.
+We will work though basic examples for optimisation and sensitivity analysis, alongside more complex calibration methods.
 
 [Click this link to launch the workshop material within Binder, which is recommended for users who do not wish to configure the workshop environment locally.](https://mybinder.org/v2/gh/Plant-Food-Research-Open/calisim-examples-workshop-material.git/HEAD)
 
 ## Setup
+
+### Binder 
+
+[Click this link to launch the workshop material within Binder.](https://mybinder.org/v2/gh/Plant-Food-Research-Open/calisim-examples-workshop-material.git/HEAD)
+
+Note that you may need to wait roughly 2 or more minutes for the workshop Docker image to be pulled when first using Binder.
+
+### Virtual environment
 
 To setup the workshop material, we will first need to clone the GitHub repo like so:
 
@@ -58,14 +66,6 @@ git clone https://github.com/Plant-Food-Research-Open/calisim-examples-workshop-
 
 cd calisim-examples-workshop-material
 ```
-
-### Binder 
-
-[Click this link to launch the workshop material within Binder.](https://mybinder.org/v2/gh/Plant-Food-Research-Open/calisim-examples-workshop-material.git/HEAD)
-
-Note that you may need to wait roughly 5 minutes for the workshop Docker image to be pulled when first using Binder.
-
-### Virtual environment
 
 To run the workshop material within a Python virtual environment, [first ensure that Poetry (a Python dependency manager) is installed.](https://python-poetry.org/docs)
 
@@ -94,6 +94,7 @@ jupyter lab
 To run the workshop material within a Docker container, execute the following:
 
 ```
+wget https://raw.githubusercontent.com/Plant-Food-Research-Open/calisim-examples-workshop-material/refs/heads/main/docker-compose.yaml
 docker compose up calisim
 
 # ctrl + C to exit
