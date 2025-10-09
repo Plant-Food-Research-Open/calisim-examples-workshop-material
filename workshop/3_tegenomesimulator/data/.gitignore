@@ -3,3 +3,4 @@ TEgenomeSimulator_*
 *.png
 *.csv
 !random_genome_chr_index.csv
+!random_genome_chr_index_small.csv
