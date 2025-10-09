@@ -457,63 +457,67 @@ files = [
 
 [[package]]
 name = "calisim"
-version = "0.6.1"
+version = "0.6.2"
 description = "A toolbox for the calibration and evaluation of simulation models."
 optional = false
-python-versions = "<3.13,>=3.10"
-files = [
-    {file = "calisim-0.6.1-py3-none-any.whl", hash = "sha256:33398bd28f62d1a97faf9e5fddbf5963b17d925edada3b559bd0c5c9fb70c521"},
-    {file = "calisim-0.6.1.tar.gz", hash = "sha256:e57d7d10cc52cb5339283a050301d7ba8c88a1c05c2771b10fe1398b7c08c0a6"},
-]
+python-versions = ">=3.10,<3.13"
+files = []
+develop = false
 
 [package.dependencies]
-alembic = ">=1.13.3,<2.0.0"
-arviz = ">=0.20.0,<0.21.0"
-celery = ">=5.4.0,<6.0.0"
-chaospy = ">=4.3.17,<5.0.0"
-cmaes = ">=0.11.1,<0.12.0"
-corner = ">=2.2.3,<3.0.0"
-emcee = ">=3.1.6,<4.0.0"
-emukit = ">=0.4.11,<0.5.0"
-gpy = ">=1.13.2,<2.0.0"
-graphviz = ">=0.20.3,<0.21.0"
-gstools = ">=1.6.0,<2.0.0"
-hydra-core = {version = ">=1.3.2,<2.0.0", optional = true, markers = "extra == \"hydra\""}
-iterative-ensemble-smoother = ">=0.2.6,<0.3.0"
-joblib = ">=1.4.2,<2.0.0"
+alembic = "^1.13.3"
+arviz = "^0.20.0"
+celery = "^5.4.0"
+chaospy = "^4.3.17"
+cmaes = "^0.11.1"
+corner = "^2.2.3"
+emcee = "^3.1.6"
+emukit = "^0.4.11"
+gpy = "^1.13.2"
+graphviz = "^0.20.3"
+gstools = "^1.6.0"
+hydra-core = {version = "^1.3.2", optional = true}
+iterative-ensemble-smoother = "^0.2.6"
+joblib = "^1.4.2"
 kaleido = "0.2.1"
-matplotlib = ">=3.9.2,<4.0.0"
-networkx = ">=3.4.1,<4.0.0"
-numpoly = "<=1.2.14"
+matplotlib = "^3.9.2"
+networkx = "^3.4.1"
+numpoly = "<= 1.2.14"
 numpy = "<2.0.0"
-openturns = ">=1.23,<2.0"
-optuna = ">=4.0.0,<5.0.0"
-pandas = ">=2.2.3,<3.0.0"
-pillow = ">=11.0.0,<12.0.0"
-plotly = ">=5.24.1,<6.0.0"
-psycopg2-binary = ">=2.9.10,<3.0.0"
-pyabc = ">=0.12.13,<0.13.0"
-pydantic = ">=2.9.2,<3.0.0"
-pyesmda = ">=0.4.3,<0.5.0"
-pygpc = ">=0.4.1,<0.5.0"
-pymc = ">=5.16.2,<6.0.0"
-pytensor = ">=2.20.0,<3.0.0"
-pyyaml = ">=6.0.2,<7.0.0"
-salib = ">=1.5.1,<2.0.0"
-scikit-activeml = ">=0.5.2,<0.6.0"
-scikit-learn = ">=1.5.2,<2.0.0"
+openturns = "^1.23"
+optuna = "^4.0.0"
+pandas = "^2.2.3"
+pillow = "^11.0.0"
+plotly = "^5.24.1"
+psycopg2-binary = "^2.9.10"
+pyabc = "^0.12.13"
+pydantic = "^2.9.2"
+pyesmda = "^0.4.3"
+pygpc = "^0.4.1"
+pymc = "^5.16.2"
+pytensor = "^2.20.0"
+pyyaml = "^6.0.2"
+salib = "^1.5.1"
+scikit-activeml = "^0.5.2"
+scikit-learn = "^1.5.2"
 scipy = "<1.12.0"
-seaborn = ">=0.13.2,<0.14.0"
-shap = ">=0.47.0,<0.48.0"
-spotpy = ">=1.6.2,<2.0.0"
-sqlalchemy = ">=2.0.36,<3.0.0"
-torchx = {version = ">=0.7.0,<0.8.0", extras = ["aws-batch", "kubernetes", "ray"], optional = true, markers = "extra == \"torchx\""}
-uncertainty-toolbox = ">=0.1.1,<0.2.0"
+seaborn = "^0.13.2"
+shap = "^0.47.0"
+spotpy = "^1.6.2"
+sqlalchemy = "^2.0.36"
+torchx = {version = "^0.7.0", extras = ["aws-batch", "kubernetes", "ray"], optional = true}
+uncertainty-toolbox = "^0.1.1"
 
 [package.extras]
 hydra = ["hydra-core (>=1.3.2,<2.0.0)"]
 torch = ["ax-platform (>=0.4.3,<0.5.0)", "botorch (>=0.12.0,<0.13.0)", "evotorch (>=0.5.1,<0.6.0)", "gpytorch (>=1.13,<2.0)", "lampe (>=0.9.0,<0.10.0)", "nflows (>=0.14,<0.15)", "pyro-api (>=0.1.2,<0.2.0)", "pyro-ppl (>=1.9.1,<2.0.0)", "sbi (<=0.22.0)", "skorch (>=1.0.0,<2.0.0)", "tensorboard (>=2.18.0,<3.0.0)", "torch (>=2.5.0,<3.0.0)", "zuko (>=1.3.0,<2.0.0)"]
 torchx = ["torchx[aws-batch,kubernetes,ray] (>=0.7.0,<0.8.0)"]
+
+[package.source]
+type = "git"
+url = "https://git@github.com/Plant-Food-Research-Open/calisim.git"
+reference = "main"
+resolved_reference = "416434858a86edf7d11b830ce5107a8bdcfb0a38"
 
 [[package]]
 name = "celery"
@@ -7434,4 +7438,4 @@ type = ["pytest-mypy"]
 [metadata]
 lock-version = "2.0"
 python-versions = ">=3.10,<3.13"
-content-hash = "a4196c25c6fa3659c27fa0679fafe9923fac498a9e6c384d8408ac4e8dd02f14"
+content-hash = "ef648596c582018b3f1476767e5b9646991c025c2dcc1e5bd720b0f967aa63c1"
