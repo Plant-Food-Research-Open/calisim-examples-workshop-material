@@ -20,6 +20,8 @@ calisim = {git = "https://git@github.com/Plant-Food-Research-Open/calisim.git", 
 mesa = {version = "<3.1.1", extras = ["rec", "network", "viz"]}
 tegenomesimulator = {git = "https://git@github.com/Plant-Food-Research-Open/TEgenomeSimulator.git", rev = "main"}
 pcse = {git = "https://git@github.com/ajwdewit/pcse.git", rev = "develop"}
+sourmash = "<4.9.4"
+biopython = "^1.85"
 
 [tool.poetry.group.docs.dependencies]
 sphinx-rtd-theme = "^3.0.1"
