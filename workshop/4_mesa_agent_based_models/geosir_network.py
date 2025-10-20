@@ -77,20 +77,23 @@ class PersonAgent(mg.GeoAgent):
                     to_id = neighbor.node_id
                     from_obj = self
                     to_obj = neighbor
-
+                    location = self.neighbourhood.HOOD
+                    
                 elif self.model.network_grid_type == "neighbourhood":
                     from_id = self.neighbourhood.node_id
                     to_id = neighbor.neighbourhood.node_id
                     from_obj = self.neighbourhood
                     to_obj = neighbor.neighbourhood
-
+                    location = self.neighbourhood.HOOD
+                    
                 self.model.network_grid.G.add_edge(
                     from_id,
                     to_id,
                     agent_type=self.model.network_grid_type,
                     from_state=from_obj.atype,
                     to_state=to_obj.atype,
-                    contact_type="contacted"
+                    contact_type="contacted",
+                    location=location
                 )
 
                 self.infected_others_at_t = True
@@ -272,8 +275,7 @@ class GeoSir(mesa.Model):
         )
 
         # Set up the Neighbourhood patches for every region in file
-        ac = mg.AgentCreator(NeighbourhoodAgent, model=self)
-        neighbourhood_agents = ac.from_file(self.geojson_regions)
+        neighbourhood_agents = self.init_neighbourhoods()
         self.space.add_agents(neighbourhood_agents)
 
         # Generate PersonAgent population
@@ -308,6 +310,11 @@ class GeoSir(mesa.Model):
 
         self.datacollector.collect(self)
 
+    def init_neighbourhoods(self):
+        ac = mg.AgentCreator(NeighbourhoodAgent, model=self)
+        neighbourhood_agents = ac.from_file(self.geojson_regions)
+        return neighbourhood_agents
+        
     def add_network(self, agent_type):
         G=nx.Graph()
         self.networks.append(G)
@@ -440,6 +447,7 @@ class GeoSir(mesa.Model):
                     row["total_infected"] = agent.total_infected
                     row["people_at_t"] = agent.people_at_t
                     row["total_people"] = agent.total_visitors
+                    row["location"] = agent.HOOD
                     x, y =  agent.geometry.centroid.coords.xy
                     row["x"], row["y"] = x[0], y[0]
 
