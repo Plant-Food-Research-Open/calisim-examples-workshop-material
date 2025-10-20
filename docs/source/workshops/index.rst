@@ -33,3 +33,4 @@ Coordinators
    coordinators.rst
    jfruit2.rst
    tegenomesimulator.rst
+   geosir.rst
