@@ -7,6 +7,7 @@ from copy import deepcopy
 import mesa
 import mesa_geo as mg
 from shapely.geometry import Point
+import numpy as np
 
 class PersonAgent(mg.GeoAgent):
     """Person Agent."""
@@ -239,6 +240,7 @@ class GeoSir(mesa.Model):
         self.space = mg.GeoSpace(warn_crs_conversion=False)
         self.networks = []
         self.states = []
+        self.r_0_ts = []
         self.network_grid = None
         network_grid_types=[
             "person",
@@ -263,6 +265,9 @@ class GeoSir(mesa.Model):
                 "susceptible": get_susceptible_count,
                 "recovered": get_recovered_count,
                 "dead": get_dead_count,
+                "contact_r_e": get_contact_r_e,
+                "contact_r_0t": get_contact_r_0t,
+                "proxy_contact_r0": get_proxy_contact_r0
             }
         )
 
@@ -359,9 +364,49 @@ class GeoSir(mesa.Model):
         for _ in range(n_steps):
             self.step()
 
+    def calculate_r_e(self) -> float:
+        induced_infections = [
+            a.induced_infections_at_t for a in self.agents_by_type[PersonAgent]
+            if a.infected_others_at_t == True
+        ]
+        n_infections = np.array(induced_infections)
+        if len(n_infections) == 0:
+            effective_r = 0
+        else:
+            effective_r = np.average(n_infections)
+
+        return effective_r
+
+    def calculate_r_0t(self, r_e: int) -> float:
+        S = get_susceptible_count(self)
+        if S == 0:
+            S = 1e-8
+
+        N = self.pop_size
+        initial_outbreak_size = 0
+        r_0_t = r_e * (N - initial_outbreak_size - 0) / S
+
+        self.r_0_ts.append(r_0_t)
+        return r_0_t
+
+    def calculate_proxy_contact_r0(self) -> float:
+        return np.array(self.r_0_ts).mean()
+
+    def resistant_susceptible_ratio(self):
+        S = self.counts["SUSCEPTIBLE"]
+        if S == 0:
+            S = 1e-8
+
+        return self.counts["RESISTANT"] / S
+
     def get_state(self) -> dict:
         state = deepcopy(self.counts)
         state["t"] = self.steps
+
+        state["contact_r_e"] = self.calculate_r_e()
+        state["contact_r_0t"] = self.calculate_r_0t(state["contact_r_e"])
+        state["proxy_contact_r0"] = self.calculate_proxy_contact_r0()
+
         return state
 
     def get_states(self):
@@ -419,7 +464,6 @@ class GeoSir(mesa.Model):
         df = pd.DataFrame(rows)
         return df
 
-# Functions needed for datacollector
 def get_infected_count(model):
     return model.counts["infected"]
 
@@ -431,17 +475,15 @@ def get_susceptible_count(model):
 def get_recovered_count(model):
     return model.counts["recovered"]
 
-
 def get_dead_count(model):
     return model.counts["dead"]
 
+def get_contact_r_e(model):
+      return model.calculate_r_e()
 
-model = GeoSir()
+def get_contact_r_0t(model):
+    r_e = model.calculate_r_e()
+    return model.calculate_r_0t(r_e)
 
-for t in range(10):
-    model.run(1)
-
-node_df = model.get_node_df()
-edge_df = model.get_edge_df()
-print(node_df)
-print(edge_df)
+def get_proxy_contact_r0(model):
+    return model.calculate_proxy_contact_r0()
