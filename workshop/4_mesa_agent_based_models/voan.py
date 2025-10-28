@@ -7,6 +7,7 @@ import networkx as nx
 
 import mesa
 from mesa import Model
+import numpy as np
 
 
 class State(Enum):
@@ -30,7 +31,9 @@ class VirusAgent(Agent):
         super().__init__(model)
 
         self.state = initial_state
-
+        self.infected_others_at_t = False
+        self.induced_infections_at_t = 0
+        
         self.virus_spread_chance = virus_spread_chance
         self.virus_check_frequency = virus_check_frequency
         self.recovery_chance = recovery_chance
@@ -48,7 +51,9 @@ class VirusAgent(Agent):
         for a in susceptible_neighbors:
             if self.random.random() < self.virus_spread_chance:
                 a.state = State.INFECTED
-
+                self.infected_others_at_t = True
+                self.induced_infections_at_t += 1
+                
     def try_gain_resistance(self):
         if self.random.random() < self.gain_resistance_chance:
             self.state = State.RESISTANT
@@ -70,6 +75,9 @@ class VirusAgent(Agent):
             self.try_remove_infection()
 
     def step(self):
+        self.infected_others_at_t = False
+        self.induced_infections_at_t = 0
+        
         if self.state is State.INFECTED:
             self.try_to_infect_neighbors()
         self.try_check_situation()
@@ -109,7 +117,9 @@ class VirusOnNetwork(Model):
         prob = avg_node_degree / self.num_nodes
         self.G = nx.erdos_renyi_graph(n=self.num_nodes, p=prob)
         self.grid = mesa.space.NetworkGrid(self.G)
-
+        self.r_0_ts = []
+        self.states = []
+        
         self.initial_outbreak_size = (
             initial_outbreak_size if initial_outbreak_size <= num_nodes else num_nodes
         )
@@ -124,6 +134,9 @@ class VirusOnNetwork(Model):
                 "Susceptible": number_susceptible,
                 "Resistant": number_resistant,
                 "R over S": self.resistant_susceptible_ratio,
+                "Effect R": self.calculate_r_e,
+                "Contact R-Naught": self.calculate_r_0t,
+                "Proxy Contact R-Naught": self.calculate_proxy_contact_r0
             }
         )
 
@@ -157,6 +170,36 @@ class VirusOnNetwork(Model):
         except ZeroDivisionError:
             return math.inf
 
+    def calculate_r_e(self) -> float:
+        induced_infections = [
+            a.induced_infections_at_t for a in self.agents_by_type[VirusAgent]
+            if a.infected_others_at_t == True
+        ]
+        n_infections = np.array(induced_infections)
+        if len(n_infections) == 0:
+            effective_r = 0
+        else:
+            effective_r = np.average(n_infections)
+
+        return effective_r
+
+    def calculate_r_0t(self) -> float:
+        r_e = self.calculate_r_e()
+        
+        S = number_state(self, State.SUSCEPTIBLE)
+        if S == 0:
+            S = 1e-8
+
+        N = self.num_nodes
+        initial_outbreak_size = self.initial_outbreak_size
+        r_0_t = r_e * (N - initial_outbreak_size - 0) / S
+
+        self.r_0_ts.append(r_0_t)
+        return r_0_t
+
+    def calculate_proxy_contact_r0(self) -> float:
+        return np.array(self.r_0_ts).mean()
+        
     def step(self):
         self.agents.shuffle_do("step")
         # collect data
